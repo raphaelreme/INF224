@@ -14,7 +14,9 @@ private:
 public:
   Media() {}
   Media(std::string name, std::string path) : name(name), path(path) {}
-  ~Media() {}
+  virtual ~Media() {
+    std::cout << "Delete a media" << std::endl;
+  }
 
   std::string getName() const {
     return name;
@@ -32,7 +34,7 @@ public:
     this->path = path;
   }
 
-  void print(std::ostream&) const;
+  virtual void print(std::ostream&) const;
 
 };
 
