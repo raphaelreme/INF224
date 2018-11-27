@@ -4,33 +4,35 @@
 #include <string>
 #include <iostream>
 
-
+/** @brief define the base class for media.
+ *  A media has name and a path
+ */
 class Media {
 private:
   std::string name;
-  std::string file;
+  std::string path;
 public:
   Media() {}
-  Media(std::string name, std::string file) : name(name), file(file) {}
+  Media(std::string name, std::string path) : name(name), path(path) {}
   ~Media() {}
 
   std::string getName() const {
     return name;
   }
 
-  std::string getFile() const {
-    return file;
+  std::string getPath() const {
+    return path;
   }
 
   void setName(std::string name) {
     this->name = name;
   }
 
-  void setFile(std::string file) {
-    this->file = file;
+  void setPath(std::string path) {
+    this->path = path;
   }
 
-  void print(std::ostream&);
+  void print(std::ostream&) const;
 
 };
 
