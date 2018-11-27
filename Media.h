@@ -14,11 +14,11 @@ public:
   Media(std::string name, std::string file) : name(name), file(file) {}
   ~Media() {}
 
-  std::string getName() {
+  std::string getName() const {
     return name;
   }
 
-  std::string getFile() {
+  std::string getFile() const {
     return file;
   }
 
@@ -30,6 +30,7 @@ public:
     this->file = file;
   }
 
+  void print(std::ostream&);
 
 };
 
