@@ -36,6 +36,9 @@ public:
 
   virtual void print(std::ostream&) const;
 
+  virtual void read() const = 0;
+
+  
 };
 
 #endif

@@ -38,6 +38,10 @@ public:
   }
 
   void print(std::ostream&) const override;
+
+  void read() const override {
+    system(("imagej " + getPath() + " &").c_str());
+  }
 };
 
 #endif

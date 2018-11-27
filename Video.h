@@ -28,6 +28,10 @@ public:
   }
 
   void print(std::ostream&) const override;
+
+  void read() const override {
+    system(("mpv " + getPath() + " &").c_str());
+  }
 };
 
 #endif
