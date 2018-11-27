@@ -1,0 +1,20 @@
+TP INF 224
+Eleve : REME Raphael
+
+
+Etape 1 :
+//
+
+Etape 2 :
+//
+
+Etape 3 :
+En créant un objet Media m, on ne peut pas acceder à m->name qui est private.
+Cela respecte bien notre principe d'encapsulation.
+
+Etape 4 :
+Read est une méthode abstraite, il faut la déclarer avec virtual et valant 0.
+-> virtual void read() const = 0;
+
+On ne peut alors plus instancier d'objets de classe Media car la classe est abstraite.
+Sa méthode read n'est pas définie.

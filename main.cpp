@@ -13,17 +13,26 @@ using namespace std;
 
 int main(int argc, const char* argv[])
 {
-    Media * m1 = new Photo("media", "test2",8,8);
-    Media * m2 = new Photo("photo", "test", 3, 3);
-    Media * m3 = new Video("video", "test", 7);
-    m1->print(cout);
-    m2->print(cout);
-    m3->print(cout);
+    Media ** medias = new Media * [10];
 
-    m1->read();
-    m3->read();
-    delete m1;
-    delete m2;
-    delete m3;
+    int count = 0;
+
+
+    medias[count++] = new Photo("photo", "0",8,8);
+    medias[count++] = new Photo("photo", "1",8,8);
+    medias[count++] = new Video("video", "2", 7);
+    medias[count++] = new Video("video", "3", 7);
+    medias[count++] = new Photo("photo", "4",8,8);
+    medias[count++] = new Video("video", "5", 7);
+    medias[count++] = new Photo("photo", "6",8,8);
+    medias[count++] = new Video("video", "7", 7);
+    medias[count++] = new Video("video", "8", 7);
+    medias[count++] = new Video("video", "9", 7);
+
+    for (int i = 0; i<10; i++){
+      medias[i]->print(cout);
+    }
+    delete [] medias;
+
     return 0;
 }
