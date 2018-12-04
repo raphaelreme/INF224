@@ -23,7 +23,7 @@ public:
     return length;
   }
 
-  void setLength(float length) {
+  virtual void setLength(float length) {
     this->length = length;
   }
 

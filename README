@@ -18,3 +18,9 @@ Read est une méthode abstraite, il faut la déclarer avec virtual et valant 0.
 
 On ne peut alors plus instancier d'objets de classe Media car la classe est abstraite.
 Sa méthode read n'est pas définie.
+
+Etape 5 :
+On utilise le polymorphisme : une Video et une Photo sont tout le deux des Media.
+C'est un tableau de pointeurs vers des Media. Il contient donc des pointeurs.
+Cela est nécessaire car tous les objets n'ont pas la même taille. Et c'est
+la même chose en Java.

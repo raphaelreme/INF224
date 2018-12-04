@@ -8,12 +8,14 @@
 #include "Media.h"
 #include "Photo.h"
 #include "Video.h"
+#include "Film.h"
 
 using namespace std;
 
-int main(int argc, const char* argv[])
+//int main(int argc, const char* argv[])
+int main()
 {
-    Media ** medias = new Media * [10];
+    /*Media * medias[10];
 
     int count = 0;
 
@@ -31,8 +33,33 @@ int main(int argc, const char* argv[])
 
     for (int i = 0; i<10; i++){
       medias[i]->print(cout);
-    }
-    delete [] medias;
+      delete medias[i];
+    }*/
+    int * lengths = new int [5] {1,2,3,2,1};
+    const int * lengths2;
+    int * lengths3;
+    long tmp;
 
+    Film * f1 = new Film("film", "0", 5, lengths);
+
+    f1->print(cout);
+    lengths2 = f1->getLengths();
+
+    lengths3 = const_cast<int *>(lengths2);
+
+    /*cout << lengths2 << endl;
+
+    cin >> tmp;
+
+    lengths3 = (int*) tmp;
+
+    cout << lengths3 << endl;
+    */
+    *lengths3 = 0;
+    f1->print(cout);
+
+
+    delete [] lengths;
+    delete f1;
     return 0;
 }
