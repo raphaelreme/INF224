@@ -1,16 +1,15 @@
-//
-// main.cpp
-// Created on 27/10/2018
-//
-
 #include <iostream>
+#include <memory>
 
 #include "Media.h"
 #include "Photo.h"
 #include "Video.h"
 #include "Film.h"
+#include "Group.h"
 
 using namespace std;
+
+using MediaPtr = std::shared_ptr<Media>;
 
 //int main(int argc, const char* argv[])
 int main()
@@ -32,27 +31,28 @@ int main()
       medias[i]->print(coutFilm * f1 = new Film("film", "0", 5, lengths););
       delete medias[i];
     }*/
-    int * lengths = new int [5] {1,2,3,2,1};
+    Group g = Group("Group1");
+    Group g2 = Group("Group2");
 
-    Video * m1 = new Video("Media1", "./", 3);
-    Film * f1 = new Film("film","./", lengths, 5);
-    Media * f2 = new Film();
+    Photo * p1 = new Photo("P1", "./", 5, 5);
+    g.push_back(p1);
 
+    Video * v1 = new Video("V1", "./", 10);
+    g.push_back(v1);
 
-    f1->print(cout);
+    int * lengths = int [5] {1,2,3,2,1};
+    Film * f1 = new Film("F1","./",lengths, 5);
+    g.push_back(f1);
 
-    //*((Film *) f2) = *f1;
-    f2->setName("Film2");
+    g2.push_back(v1);
 
+    g.print(cout);
+    g2.print(cout);
 
-    f2->print(cout);
-
-    cout << endl << endl;
-
-
-
-    delete [] lengths;
+    delete p1;
+    delete v1;
     delete f1;
-    delete f2;
+
+    cout << endl;
     return 0;
 }

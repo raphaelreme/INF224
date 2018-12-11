@@ -43,3 +43,12 @@ Si on copie un objet on peut avoir des problèmes si celui ci à des pointeurs v
 d'autres objets. Si on ne fait que copier superficiellement les pointeurs, alors
 ils seront partagés entre deux objets. Il faudrait copier aussi récursivement les
 objets pointés.
+
+Etape 8 :
+si on fait une liste de Media, chaque cellule de la liste devra contenir un Media.
+Mais comme un film ne fait pas le même taille que les photos ni que les videos,
+cela ne peut pas marcher. On utilise donc des pointeurs. (les pointeurs font la même taille
+même si les pointés sont de tailles différentes.)
+cela fonctionne pareil en Java.
+
+Etape 9 :
