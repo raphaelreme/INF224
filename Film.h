@@ -15,11 +15,13 @@ private:
     Video::setLength(length);
   }
 
-public:
-  Film() {}
-  Film(std::string name, std::string path, int numberOfChapters, int * lengths) :
-          Video(name, path, 0), numberOfChapters(numberOfChapters)
-  {
+  void copyLengths(int * lengths, int numberOfChapters) {
+    if (!lengths) {
+      this->lengths = nullptr;
+      setLength(0);
+      return;
+    }
+
     int length = 0;
     this->lengths = new int [numberOfChapters];
     for (int i = 0; i<numberOfChapters; i++) {
@@ -29,11 +31,25 @@ public:
     setLength(length);
   }
 
+public:
+  Film() {}
+  Film(std::string name, std::string path, int * lengths, int numberOfChapters) :
+          Video(name, path, 0), numberOfChapters(numberOfChapters)
+  {
+    copyLengths(lengths, numberOfChapters);
+  }
+
+  Film(const Film& film) : Video(film) {
+    numberOfChapters = film.numberOfChapters; //private ou pas ?
+    copyLengths(film.lengths, numberOfChapters);
+  }
+
   ~Film() {
-    delete [] lengths;
+    delete [] lengths; //What if nullptr ?
     std::cout << "Delete a film" << std::endl;
   }
 
+  //Getters
   const int * getLengths() const {
     return lengths;
   }
@@ -42,16 +58,22 @@ public:
     return numberOfChapters;
   }
 
+  //Setters
   void setLengths(int numberOfChapters, int * lengths) {
-    int length = 0;
-    delete [] this->lengths;
-    this->lengths = new int [numberOfChapters];
-    for (int i = 0; i<numberOfChapters; i++) {
-      length += lengths[i];
-      (this->lengths)[i] = lengths[i];
-    }
-    setLength(length);
+    delete [] this->lengths; //what if null ptr ?
+    copyLengths(lengths, numberOfChapters);
   }
+
+
+  Film& operator=(const Film& film) {
+    Video::operator=(film);
+    numberOfChapters = film.numberOfChapters; //private ou pas ?
+    copyLengths(film.lengths, numberOfChapters);
+    return *this;
+  }
+
+
+
 
   void print(std::ostream&) const override;
 
