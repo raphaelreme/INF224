@@ -15,7 +15,7 @@ private:
     Video::setLength(length);
   }
 
-  void copyLengths(int * lengths, int numberOfChapters) {
+  void copyLengths(const int * lengths, int numberOfChapters) {
     if (!lengths) {
       this->lengths = nullptr;
       setLength(0);
@@ -68,8 +68,8 @@ public:
   //Operators
   Film& operator=(const Film& film) {
     Video::operator=(film);
-    numberOfChapters = film.numberOfChapters; //private ou pas ?
-    copyLengths(film.lengths, numberOfChapters);
+    numberOfChapters = film.getNumberOfChapters(); //private ou pas ?
+    copyLengths(film.getLengths(), numberOfChapters);
     return *this;
   }
 

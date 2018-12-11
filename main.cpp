@@ -16,10 +16,7 @@ using namespace std;
 int main()
 {
     /*Media * medias[10];
-
     int count = 0;
-
-
     medias[count++] = new Photo("photo", "0",8,8);
     medias[count++] = new Photo("photo", "1",8,8);
     medias[count++] = new Video("video", "2", 7);
@@ -32,34 +29,30 @@ int main()
     medias[count++] = new Video("video", "9", 7);
 
     for (int i = 0; i<10; i++){
-      medias[i]->print(cout);
+      medias[i]->print(coutFilm * f1 = new Film("film", "0", 5, lengths););
       delete medias[i];
     }*/
     int * lengths = new int [5] {1,2,3,2,1};
-    const int * lengths2;
-    int * lengths3;
-    long tmp;
 
-    Film * f1 = new Film("film", "0", 5, lengths);
+    Video * m1 = new Video("Media1", "./", 3);
+    Film * f1 = new Film("film","./", lengths, 5);
+    Media * f2 = new Film();
+
 
     f1->print(cout);
-    lengths2 = f1->getLengths();
 
-    lengths3 = const_cast<int *>(lengths2);
+    //*((Film *) f2) = *f1;
+    f2->setName("Film2");
 
-    /*cout << lengths2 << endl;
 
-    cin >> tmp;
+    f2->print(cout);
 
-    lengths3 = (int*) tmp;
+    cout << endl << endl;
 
-    cout << lengths3 << endl;
-    */
-    *lengths3 = 0;
-    f1->print(cout);
 
 
     delete [] lengths;
     delete f1;
+    delete f2;
     return 0;
 }

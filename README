@@ -28,10 +28,13 @@ la même chose en Java.
 Etape 6 :
 Il faut recopier le tableau à l'instanciation de l'objet. Ainsi personne d'autres
 que l'objet n'y a accès. Pour l'accesseur, on peut recopier à nouveau le tableau.
-Mais cela implique des possibles fuites mémoires si personnne ne delete le tableau
+Mais cela implique des possibles fuites mémoires si personne ne delete le tableau
 dynamiquement crée. Une autre solution est de renvoyer le pointeur du tableau comme
 un const int *. (Cela n'empêche pas l'utilisateur de vraiment modifier l'objet,
 mais ça lui complique la vie et lui indique bien qu'il ne faut pas le faire)
+
+Enfin, on pourrait demander à l'utilisateur de fournir un tableau  qu'il
+aurait allouer et recopier notre tableau dans le sien.
 
 Etape 7 :
 La classe film crée un tableau dynamiquement dans son constructeur. Elle doit
