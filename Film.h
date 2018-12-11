@@ -32,6 +32,7 @@ private:
   }
 
 public:
+  //Constructors and destructor
   Film() {}
   Film(std::string name, std::string path, int * lengths, int numberOfChapters) :
           Video(name, path, 0), numberOfChapters(numberOfChapters)
@@ -64,7 +65,7 @@ public:
     copyLengths(lengths, numberOfChapters);
   }
 
-
+  //Operators
   Film& operator=(const Film& film) {
     Video::operator=(film);
     numberOfChapters = film.numberOfChapters; //private ou pas ?
@@ -73,8 +74,7 @@ public:
   }
 
 
-
-
+  //Methods
   void print(std::ostream&) const override;
 
   void read() const override {
