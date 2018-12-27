@@ -37,14 +37,13 @@ int main()
     MediaPtr p1 = (MediaPtr) new Photo("P1", "./", 5, 5);
     g.push_back(p1);
 
-    MediaPtr v1 = (MediaPtr) new Video("V1", "./", 10);
-    g.push_back(v1);
+    g.push_back((MediaPtr) new Video("V1", "./", 10));
 
     int lengths[] = {1,2,3,2,1};
-    MediaPtr f1 = (MediaPtr) new Film("F1","./",lengths, 5);
-    g.push_back(f1);
+    g.push_back((MediaPtr) new Film("F1","./",{1,2,3,2,1}, 5));
 
-    g2.push_back(v1);
+    g2.push_back(p1);
+    p1.reset();
 
     g.print(cout);
     g2.print(cout);
