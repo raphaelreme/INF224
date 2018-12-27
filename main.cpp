@@ -34,14 +34,14 @@ int main()
     Group g = Group("Group1");
     Group g2 = Group("Group2");
 
-    Photo * p1 = new Photo("P1", "./", 5, 5);
+    MediaPtr p1 = new Photo("P1", "./", 5, 5);
     g.push_back(p1);
 
-    Video * v1 = new Video("V1", "./", 10);
+    MediaPtr v1 = new Video("V1", "./", 10);
     g.push_back(v1);
 
     int * lengths = int [5] {1,2,3,2,1};
-    Film * f1 = new Film("F1","./",lengths, 5);
+    MediaPtr f1 = new Film("F1","./",lengths, 5);
     g.push_back(f1);
 
     g2.push_back(v1);
