@@ -59,9 +59,9 @@ int main()
     g2.print(cout);
 
 
-    delete p1;
-    delete v1;
-    delete f1;
+    p1.reset();
+    v1.reset();
+    f1.reset();
 
     cout << endl;
     return 0;
