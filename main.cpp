@@ -59,10 +59,6 @@ int main()
     g2.print(cout);
 
 
-    p1.reset();
-    v1.reset();
-    f1.reset();
-
     cout << endl;
     return 0;
 }
