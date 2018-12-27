@@ -49,6 +49,16 @@ int main()
     g.print(cout);
     g2.print(cout);
 
+    g.pop_back();
+    g.pop_back();
+    g.pop_back();
+
+    g2.pop_back();
+
+    g.print(cout);
+    g2.print(cout);
+
+
     delete p1;
     delete v1;
     delete f1;
