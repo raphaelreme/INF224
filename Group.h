@@ -15,7 +15,7 @@ public:
   Group(std::string name) : name(name) {}
 
   ~Group() {
-    std::cout << "Delete a film" << std::endl;
+    std::cout << "Delete a group" << std::endl;
   }
 
 
