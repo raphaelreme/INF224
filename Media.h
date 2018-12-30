@@ -4,16 +4,21 @@
 #include <string>
 #include <iostream>
 
+class Table;
+
 /** @brief define the base class for media.
  *  A media has name and a path
  */
 class Media {
+  friend Table;
 private:
   std::string name;
   std::string path;
-public:
+
   Media() {}
   Media(std::string name, std::string path) : name(name), path(path) {}
+
+public:
   virtual ~Media() {
     std::cout << "Delete a media" << std::endl;
   }
@@ -38,7 +43,7 @@ public:
 
   virtual void read() const = 0;
 
-  
+
 };
 
 #endif

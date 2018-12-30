@@ -8,12 +8,14 @@
 
 
 class Group : public std::list<std::shared_ptr<Media>> {
+  friend Table;
 private:
   std::string name;
-public:
+
   Group() {}
   Group(std::string name) : name(name) {}
-
+  
+public:
   ~Group() {
     std::cout << "Delete a group" << std::endl;
   }

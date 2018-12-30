@@ -10,11 +10,11 @@ class Video : public Media {
 private:
   int length = 0;
 
-public:
   Video() {}
   Video(std::string name, std::string path, int length) :
           Media(name, path), length(length) {}
 
+public:
   ~Video() {
     std::cout << "Delete a video" << std::endl;
   }

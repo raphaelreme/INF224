@@ -5,7 +5,6 @@
 #include <iostream>
 #include "Video.h"
 
-
 class Film : public Video {
 private:
   int numberOfChapters = 0;
@@ -31,8 +30,7 @@ private:
     setLength(length);
   }
 
-public:
-  //Constructors and destructor
+  //Constructors
   Film() {}
   Film(std::string name, std::string path, int * lengths, int numberOfChapters) :
           Video(name, path, 0), numberOfChapters(numberOfChapters)
@@ -45,6 +43,7 @@ public:
     copyLengths(film.lengths, numberOfChapters);
   }
 
+  public:
   ~Film() {
     delete [] lengths; //What if nullptr ?
     std::cout << "Delete a film" << std::endl;

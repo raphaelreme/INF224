@@ -5,10 +5,7 @@
 #include <iostream>
 #include "Media.h"
 
-class Table;
-
 class Photo : public Media {
-  friend Table;
 private:
   float latitude = 0;
   float longitude = 0;
