@@ -6,6 +6,7 @@
 #include "Video.h"
 
 class Film : public Video {
+  friend Table;
 private:
   int numberOfChapters = 0;
   int * lengths = nullptr;
@@ -30,7 +31,7 @@ private:
     setLength(length);
   }
 
-  //Constructors
+protected:
   Film() {}
   Film(std::string name, std::string path, int * lengths, int numberOfChapters) :
           Video(name, path, 0), numberOfChapters(numberOfChapters)

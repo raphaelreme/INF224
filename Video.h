@@ -7,9 +7,11 @@
 
 
 class Video : public Media {
+  friend Table;
 private:
   int length = 0;
 
+protected:
   Video() {}
   Video(std::string name, std::string path, int length) :
           Media(name, path), length(length) {}

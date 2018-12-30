@@ -15,6 +15,7 @@ private:
   std::string name;
   std::string path;
 
+protected:
   Media() {}
   Media(std::string name, std::string path) : name(name), path(path) {}
 

@@ -6,11 +6,12 @@
 #include "Media.h"
 
 class Photo : public Media {
+  friend Table;
 private:
   float latitude = 0;
   float longitude = 0;
 
-
+protected:
   Photo() {}
   Photo(std::string name, std::string path, float latitude,
       float longitude) : Media(name, path), latitude(latitude),
