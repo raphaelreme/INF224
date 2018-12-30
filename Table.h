@@ -55,6 +55,10 @@ public:
     return medias.at(name);
   }
 
+  GroupPtr findGroup(std::string name) const {
+    return groups.at(name);
+  }
+
   void display(std::string name, std::ostream& stream) const {
     find(name)->print(stream);
   }

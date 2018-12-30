@@ -13,7 +13,7 @@ int main()
     GroupPtr g1 = t.createGroup("Fun");
     GroupPtr g2 = t.createGroup("Serious");
 
-    MediaPtr p1 = t.createPhoto("P1", "./", 5, 5)
+    MediaPtr p1 = t.createPhoto("P1", "./", 5, 5);
 
     g1->push_back(p1);
     g2->push_back(p1);
@@ -37,9 +37,10 @@ int main()
 
     cout << endl;
 
-    g1->print(cout);
-    g2->print(cout);
-
+    ((Photo*) t.find("P1").get())->setLatitude(14);
+    t.find("V1")->setName("V2");
+    t.findGroup("Fun")->print(cout);
+    t.findGroup("Serious")->print(cout);
     /*
     g2.pop_back();
 
