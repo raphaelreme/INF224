@@ -17,8 +17,8 @@ typedef std::shared_ptr<Group> GroupPtr;
 
 class Table {
 private:
-  std::map<string, MediaPtr> medias;
-  std::map<string, GroupPtr> groups;
+  std::map<std::string, MediaPtr> medias;
+  std::map<std::string, GroupPtr> groups;
 public:
   Table() {}
   ~Table() {
@@ -27,43 +27,41 @@ public:
 
   PhotoPtr createPhoto(std::string name, std::string path, float latitude,
                        float longitude) {
-    PhotoPtr p = new Photo(name, path, latitude, longitude);
+    PhotoPtr p = (PhotoPtr) new Photo(name, path, latitude, longitude);
     medias[name] = p;
     return p;
   }
 
   VideoPtr createVideo(std::string name, std::string path, int length) {
-    VideoPtr v = new Video(name, path, length);
+    VideoPtr v = (VideoPtr) new Video(name, path, length);
     medias[name] = v;
     return v;
   }
 
   FilmPtr createFilm(std::string name, std::string path, int * lengths,
                      int numberOfChapters) {
-    FilmPtr f = new Film(name, path,  int * lengths, int numberOfChapters);
+    FilmPtr f = (FilmPtr) new Film(name, path, lengths, numberOfChapters);
     medias[name] = f;
     return f;
   }
 
   GroupPtr createGroup(std::string name) {
-    GroupPtr g = new Group(name);
-    groupes[name] = g;
+    GroupPtr g = (GroupPtr) new Group(name);
+    groups[name] = g;
     return g;
   }
 
-  MediaPtr find(std::string name) {
+  MediaPtr find(std::string name) const {
     return medias.at(name);
   }
 
   void display(std::string name, std::ostream& stream) const {
-    find(name).print(stream);
+    find(name)->print(stream);
   }
 
   void play(std::string name) const {
-    find(name).read();
+    find(name)->read();
   }
 
-
-
-}
+};
 #endif
