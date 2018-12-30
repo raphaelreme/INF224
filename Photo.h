@@ -5,18 +5,20 @@
 #include <iostream>
 #include "Media.h"
 
+class Table;
 
 class Photo : public Media {
+  friend Table;
 private:
   float latitude = 0;
   float longitude = 0;
 
-public:
+
   Photo() {}
   Photo(std::string name, std::string path, float latitude,
       float longitude) : Media(name, path), latitude(latitude),
                          longitude(longitude) {}
-
+public:
   ~Photo() {
     std::cout << "Delete a photo" << std::endl;
   }
