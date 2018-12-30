@@ -1,11 +1,7 @@
 #include <iostream>
 #include <memory>
 
-#include "Media.h"
-#include "Photo.h"
-#include "Video.h"
-#include "Film.h"
-#include "Group.h"
+#include "Table.h"
 
 using namespace std;
 
