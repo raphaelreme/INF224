@@ -40,10 +40,9 @@ int main()
     g.push_back((MediaPtr) new Video("V1", "./", 10));
 
     int lengths[] = {1,2,3,2,1};
-    g.push_back((MediaPtr) new Film("F1","./",{1,2,3,2,1}, 5));
+    g.push_back((MediaPtr) new Film("F1","./",lengths, 5));
 
     g2.push_back(p1);
-    p1.reset();
 
     g.print(cout);
     g2.print(cout);
@@ -51,6 +50,8 @@ int main()
     g.pop_back();
     g.pop_back();
     g.pop_back();
+
+    cout << endl;
 
     g2.pop_back();
 
