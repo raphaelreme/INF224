@@ -25,6 +25,7 @@ public:
     std::cout << "Delete a table" << std::endl;
   }
 
+  //Generation of Medias/Groups
   PhotoPtr createPhoto(std::string name, std::string path, float latitude,
                        float longitude) {
     PhotoPtr p = (PhotoPtr) new Photo(name, path, latitude, longitude);
@@ -51,12 +52,41 @@ public:
     return g;
   }
 
+
+
+  //Methods
   MediaPtr find(std::string name) const {
     return medias.at(name);
   }
 
   GroupPtr findGroup(std::string name) const {
     return groups.at(name);
+  }
+
+  void delete(std::string name) {
+    auto it_g = groups.find(name);
+    if (it_g != groups.end()) {
+      groups.erase(it_g);
+      return;
+    }
+
+    //If the name doesn't fit a group, it should fit a media.
+    bool delete_media(MediaPtr med) {
+      return (med->getName() == name);
+    }
+
+
+    auto it_m = medias.find(name);
+    if (it_m != medias.end()) {
+      for (auto& elt : groups) {
+        GroupPtr group = elt.second;
+        group->remove_if(delete_media);
+      }
+
+
+      medias.erase(it);
+      return;
+    }
   }
 
   void display(std::string name, std::ostream& stream) const {

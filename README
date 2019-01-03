@@ -52,3 +52,8 @@ même si les pointés sont de tailles différentes.)
 cela fonctionne pareil en Java.
 
 Etape 9 :
+//
+
+Etape 10 :
+On peut passer les constructeurs des classes en privé (protected en fait pour que les
+sous classes y aient toujours acces) et rajouter la classe table en friend.
