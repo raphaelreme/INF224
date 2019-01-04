@@ -15,6 +15,11 @@ typedef std::shared_ptr<Video> VideoPtr;
 typedef std::shared_ptr<Film> FilmPtr;
 typedef std::shared_ptr<Group> GroupPtr;
 
+bool delete_media(MediaPtr med) {
+  return (med->getName() == name);
+}
+
+
 class Table {
 private:
   std::map<std::string, MediaPtr> medias;
@@ -71,18 +76,12 @@ public:
     }
 
     //If the name doesn't fit a group, it should fit a media.
-    bool delete_media(MediaPtr med) {
-      return (med->getName() == name);
-    }
-
-
     auto it_m = medias.find(name);
     if (it_m != medias.end()) {
       for (auto& elt : groups) {
         GroupPtr group = elt.second;
         group->remove_if(delete_media);
       }
-
 
       medias.erase(it);
       return;
