@@ -64,26 +64,10 @@ public:
     return groups.at(name);
   }
 
-  void del(std::string name) {
-    auto it_g = groups.find(name);
-    if (it_g != groups.end()) {
-      groups.erase(it_g);
-      return;
-    }
-
-    //If the name doesn't fit a group, it should fit a media.
-    mediaName = name;
-    auto it_m = medias.find(name);
-    if (it_m != medias.end()) {
-      for (auto& elt : groups) {
-        GroupPtr group = elt.second;
-        it = group->
-      }
-
-      medias.erase(it_m);
-      return;
-    }
-  }
+  /*remove a group or media from the table.
+    If name match both a group and a media, it will only remove the group
+  */
+  void remove(std::string name);
 
   void display(std::string name, std::ostream& stream) const {
     find(name)->print(stream);
@@ -92,6 +76,8 @@ public:
   void play(std::string name) const {
     find(name)->read();
   }
+
+  bool processRequest(TCPConnection& cnx, const string& request, string& response);
 
 };
 #endif

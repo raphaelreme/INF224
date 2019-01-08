@@ -37,6 +37,8 @@ int main()
 
     cout << endl;
 
+    t.remove("F1");
+
     ((Photo*) t.find("P1").get())->setLatitude(14);
     t.find("V1")->setName("V2");
     t.findGroup("Fun")->print(cout);

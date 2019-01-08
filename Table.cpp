@@ -1,1 +1,50 @@
 #include "Table.h"
+
+void Table::remove(std::string name) {
+  auto it_g = groups.find(name);
+  if (it_g != groups.end()) {
+    groups.erase(it_g);
+    return;
+  }
+
+  //If the name doesn't fit a group, it should fit a media.
+  auto it_m = medias.find(name);
+  if (it_m != medias.end()) {
+    for (auto& elt : groups) {
+      GroupPtr group = elt.second;
+      group->remove_if([name](MediaPtr m) {return m->getName() == name;});
+    }
+
+    medias.erase(it_m);
+    return;
+  }
+}
+
+
+bool Table::processRequest(TCPConnection& cnx, const string& request, string& response)
+{
+  cerr << "\nRequest: '" << request << "'" << endl;
+  
+  // 1) pour decouper la requête:
+  // on peut par exemple utiliser stringstream et getline()
+
+
+  // 2) faire le traitement:
+  // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
+  // - sinon juste: TCPLock lock(cnx);
+
+
+  // 3) retourner la reponse au client:
+  // - pour l'instant ca retourne juste OK suivi de la requête
+  // - pour retourner quelque chose de plus utile on peut appeler la methode print()
+  //   des objets ou des groupes en lui passant en argument un stringstream
+  // - attention, la requête NE DOIT PAS contenir les caractères \n ou \r car
+  //   ils servent à délimiter les messages entre le serveur et le client
+
+  response = "OK: " + request;
+  cerr << "response: " << response << endl;
+
+  // renvoyer false si on veut clore la connexion avec le client
+  return true;
+}
+};
