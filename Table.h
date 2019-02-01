@@ -2,12 +2,17 @@
 #define TABLE_H
 
 #include <map>
+#include <memory>
+#include <string>
+#include <iostream>
+#include <sstream>
 
 #include "Media.h"
 #include "Photo.h"
 #include "Video.h"
 #include "Film.h"
 #include "Group.h"
+#include "tcpserver.h"
 
 typedef std::shared_ptr<Media> MediaPtr;
 typedef std::shared_ptr<Photo> PhotoPtr;
@@ -77,7 +82,7 @@ public:
     find(name)->read();
   }
 
-  bool processRequest(TCPConnection& cnx, const string& request, string& response);
+  bool processRequest(cppu::TCPConnection& cnx, const std::string& request, std::string& response);
 
 };
 #endif

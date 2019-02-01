@@ -1,6 +1,11 @@
-#include "Table.h"
+#include <iostream>
+#include <sstream>
 
-void Table::remove(std::string name) {
+#include "Table.h"
+using namespace cppu;
+using namespace std;
+
+void Table::remove(string name) {
   auto it_g = groups.find(name);
   if (it_g != groups.end()) {
     groups.erase(it_g);
@@ -24,9 +29,11 @@ void Table::remove(std::string name) {
 bool Table::processRequest(TCPConnection& cnx, const string& request, string& response)
 {
   cerr << "\nRequest: '" << request << "'" << endl;
-  
+
   // 1) pour decouper la requête:
   // on peut par exemple utiliser stringstream et getline()
+  stringstream ss;
+  getline(ss, request);
 
 
   // 2) faire le traitement:
