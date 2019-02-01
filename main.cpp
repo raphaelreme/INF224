@@ -1,10 +1,15 @@
 #include <iostream>
 #include <memory>
 
+#include "tcpserver.h"
 #include "Table.h"
 
 using namespace std;
+using namespace cppu;
 
+const int PORT = 3331;
+
+#ifdef OLD_VERSION
 //int main(int argc, const char* argv[])
 int main()
 {
@@ -52,4 +57,29 @@ int main()
 
     cout << endl;
     return 0;
+}
+#endif
+
+int main()
+{
+  // cree le TCPServer
+  shared_ptr<TCPServer> server(new TCPServer());
+
+  // cree l'objet qui gère les données
+  shared_ptr<Table> table(new Table());
+
+  // le serveur appelera cette méthode chaque fois qu'il y a une requête
+  server->setCallback(*table, &Table::processRequest);
+
+  // lance la boucle infinie du serveur
+  cout << "Starting Server on port " << PORT << endl;
+  int status = server->run(PORT);
+
+  // en cas d'erreur
+  if (status < 0) {
+    cerr << "Could not start Server on port " << PORT << endl;
+    return 1;
+  }
+
+  return 0;
 }

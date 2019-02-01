@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <exception>
 
 #include "Table.h"
 using namespace cppu;
@@ -26,15 +27,31 @@ void Table::remove(string name) {
 }
 
 
-bool Table::processRequest(TCPConnection& cnx, const string& request, string& response)
-{
+bool Table::processRequest(TCPConnection& cnx, const string& request, string& response) {
   cerr << "\nRequest: '" << request << "'" << endl;
 
   // 1) pour decouper la requête:
   // on peut par exemple utiliser stringstream et getline()
-  stringstream ss;
-  getline(ss, request);
+  stringstream ss(request);
 
+  string commande;
+  string argument;
+
+  ss >> commande;
+  if (commande == "findm") {
+    ss >> argument;
+    MediaPtr media;
+    try {
+      MediaPtr media = find(argument);
+    } catch (out_of_range const& e) {
+      cerr << "Erreur : " << e.what() << endl;
+      response = "Not found : " + argument;
+      return true;
+    }
+
+    media->print(cerr);
+
+  }
 
   // 2) faire le traitement:
   // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
@@ -54,4 +71,3 @@ bool Table::processRequest(TCPConnection& cnx, const string& request, string& re
   // renvoyer false si on veut clore la connexion avec le client
   return true;
 }
-};
