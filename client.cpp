@@ -22,9 +22,9 @@ static const int PORT = 3331;
 int main() {
   Socket sock;
   SocketBuffer sockbuf(sock);
-  
+
   int status = sock.connect(HOST, PORT);
-  
+
   if (status < 0) {
     switch (status) {
       case Socket::Failed:
@@ -38,33 +38,34 @@ int main() {
         return 1;
     }
   }
-  
+
   cout << "Client connected to "<< HOST<<":"<<PORT << endl;
-  
+
   while (cin) {
     cout << "Request: ";
     string request, response;
-    
+
+
     getline(cin, request);
     if (request == "quit") return 0;
-    
+
     // Envoyer la requete au serveur
     if (sockbuf.writeLine(request) < 0) {
       cerr << "Client: Couldn't send message" << endl;
       return 2;
     }
-    
+
     // Recuperer le resultat envoye par le serveur
     if (sockbuf.readLine(response) < 0) {
       cerr << "Client: Couldn't receive message" << endl;
       return 2;
     }
-    
+
     // Le serveur remplace les '\n' par des ';' car '\n' sert a indiquer la
     // fin d'un message entre le client et le serveur
     // On fait ici la transformation inverse
     replace(response.begin(), response.end(), ';', '\n');
-    
+
     cout << "Response: " << response << endl;
   }
 }

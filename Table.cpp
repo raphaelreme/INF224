@@ -42,15 +42,61 @@ bool Table::processRequest(TCPConnection& cnx, const string& request, string& re
     ss >> argument;
     MediaPtr media;
     try {
-      MediaPtr media = find(argument);
+      media = find(argument);
     } catch (out_of_range const& e) {
       cerr << "Erreur : " << e.what() << endl;
       response = "Not found : " + argument;
       return true;
     }
+    stringbuf buffer = stringbuf();
+    ostream os(&buffer);
+    if (media.get()) {
+      media->print(os);
+      string s = buffer.str();
+      for (uint i = 0; i<s.length(); i++)
+        if (s.at(i) == "\n"[0] or s.at(i) == "\r"[0])
+          s.replace(i, 1, " ");
+      response = "Found " + argument + " : " + s;
+    }
+    return true;
+  }
 
-    media->print(cerr);
+  if (commande == "findg") {
+    ss >> argument;
+    GroupPtr group;
+    try {
+      group = findGroup(argument);
+    } catch (out_of_range const& e) {
+      cerr << "Erreur : " << e.what() << endl;
+      response = "Not found : " + argument;
+      return true;
+    }
+    stringbuf buffer = stringbuf();
+    ostream os(&buffer);
+    if (group.get()) {
+      group->print(os);
+      string s = buffer.str();
+      for (uint i = 0; i<s.length(); i++)
+        if (s.at(i) == "\n"[0] or s.at(i) == "\r"[0])
+          s.replace(i, 1, " ");
+      response = "Found " + argument + " : " + s;
+    }
+    return true;
+  }
 
+  if (commande == "play") {
+    ss >> argument;
+    MediaPtr media;
+    try {
+      media = find(argument);
+    } catch (out_of_range const& e) {
+      cerr << "Erreur : " << e.what() << endl;
+      response = "Not found : " + argument;
+      return true;
+    }
+    media->play(os);
+    response = "Play " + argument;
+    return true;
   }
 
   // 2) faire le traitement:

@@ -67,6 +67,22 @@ int main()
 
   // cree l'objet qui gère les données
   shared_ptr<Table> table(new Table());
+  GroupPtr g1 = table->createGroup("Fun");
+  GroupPtr g2 = table->createGroup("Serious");
+
+  MediaPtr p1 = table->createPhoto("P1", "./", 5, 5);
+
+  g1->push_back(p1);
+  g2->push_back(p1);
+
+
+  g1->push_back((MediaPtr) table->createVideo("V1", "./", 10));
+
+  int lengths[] = {1,2,3,2,1};
+  g1->push_back((MediaPtr) table->createFilm("F1","./",lengths, 5));
+
+  g1.reset();
+  g2.reset();
 
   // le serveur appelera cette méthode chaque fois qu'il y a une requête
   server->setCallback(*table, &Table::processRequest);
