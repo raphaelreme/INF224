@@ -25,25 +25,28 @@ public class MainFrame extends JFrame {
 		
 	}
 	
+	private Client client;
 	
-	private JTextArea textArea;
+	private TextArea textArea;
 	
-	private AbstractAction act1;
+	private AbstractAction connectAction;
 	private AbstractAction act2;
 	private AbstractAction act3;
 	
 
-	public MainFrame(){
-		act1 = new AbstractAction("B-1") {
+	public MainFrame(Client client){
+		this.client = client;
+		
+		connectAction = new AbstractAction("Connect") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textArea.append("Salut du boutton1 \n");
+				client.connect(textArea);
 			}
 		};
 		
-		act1.putValue(Action.MNEMONIC_KEY, new Integer(KeyEvent.VK_A));
+		
 		
 		act2 = new AbstractAction("B-2") {
 			private static final long serialVersionUID = 1L;
@@ -54,7 +57,7 @@ public class MainFrame extends JFrame {
 			}
 		};
 		
-		act3 = new AbstractAction("B-3") {
+		act3 = new AbstractAction("Quit") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -75,7 +78,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void initPanel() {
-		this.textArea = new JTextArea(20,20);
+		this.textArea = new TextArea(20,20);
 		
 		JScrollPane scrollPane = new JScrollPane(this.textArea);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -83,7 +86,7 @@ public class MainFrame extends JFrame {
 		
 		JPanel panel = new JPanel();
 		
-		panel.add(new JButton(act1));
+		panel.add(new JButton(connectAction));
 		panel.add(new JButton(act2));
 		panel.add(new JButton(act3));
 		
@@ -94,9 +97,9 @@ public class MainFrame extends JFrame {
 	
 	private void initMenuBar() {
 		JMenuBar bar = new JMenuBar();
-		JMenu menu = new JMenu("Menu 1");
+		JMenu menu = new JMenu("Connection :");
 		
-		menu.add(new JMenuItem(act1));
+		menu.add(new JMenuItem(connectAction));
 		menu.add(new JMenuItem(act2));
 		menu.add(new JMenuItem(act3));
 		bar.add(menu);
@@ -106,7 +109,7 @@ public class MainFrame extends JFrame {
 	private void initToolBar() {
 		JToolBar bar = new JToolBar();
 
-		bar.add(new JMenuItem(act1));
+		bar.add(new JMenuItem(connectAction));
 		bar.add(new JMenuItem(act2));
 		bar.add(new JMenuItem(act3));
 		
