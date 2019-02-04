@@ -94,7 +94,7 @@ bool Table::processRequest(TCPConnection& cnx, const string& request, string& re
       response = "Not found : " + argument;
       return true;
     }
-    media->play(os);
+    media->read();
     response = "Play " + argument;
     return true;
   }
