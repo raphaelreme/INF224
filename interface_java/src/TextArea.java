@@ -12,7 +12,7 @@ public class TextArea extends JTextArea implements Printer {
 
 	@Override
 	public void print(String message) {
-		append("\n" + message);
+		append(message + "\n");
 	}
 
 }
