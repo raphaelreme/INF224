@@ -67,6 +67,7 @@ bool Table::processRequest(TCPConnection& cnx, const string& request, string& re
     GroupPtr group;
 
     TCPLock lock(cnx);
+
     try {
       group = findGroup(argument);
     } catch (out_of_range const& e) {
@@ -92,6 +93,7 @@ bool Table::processRequest(TCPConnection& cnx, const string& request, string& re
     MediaPtr media;
 
     TCPLock lock(cnx);
+
     try {
       media = find(argument);
     } catch (out_of_range const& e) {

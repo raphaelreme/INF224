@@ -1,12 +1,10 @@
 //
-// Client Java pour communiquer avec le Serveur C++ 
+// Client Java pour communiquer avec le Serveur C++
 // eric lecolinet - telecom paristech - 2015
 //
 
 import java.io.*;
 import java.net.*;
-
-import interfaces.Printer;
 
 public class Client
 {
@@ -22,9 +20,10 @@ public class Client
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	///
-	/// Crée le client. 
+	/// Crée le client.
 	/// A fournir, un printer pour afficher les messages du client.
 	/// Renvoie le client (ou null en cas d'echec)
+	/// On peut aussi fournir un host et un port.
 	///
 	public static Client connect(Printer printer) {
 		return connect(printer, DEFAULT_HOST, DEFAULT_PORT);
@@ -51,7 +50,7 @@ public class Client
 			System.err.println("Client connected to "+host+":"+port);
 		return client;
 	}
-	
+
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	///
@@ -99,7 +98,7 @@ public class Client
 			print("Client: Couldn't send message: " + e);
 			return null;
 		}	/**
-		 * 
+		 *
 		 */
 
 		// Recuperer le resultat envoye par le serveur
@@ -124,4 +123,3 @@ public class Client
 
 	}
 }
-

@@ -5,6 +5,11 @@
 #include <iostream>
 #include "Media.h"
 
+/** @brief Define the photo model based on Media.
+ *  A Photo has a longitude and a latitude.
+ *
+ *  See Table to create any Media.
+ */
 class Photo : public Media {
   friend Table;
 private:

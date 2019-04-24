@@ -61,3 +61,8 @@ sous classes y aient toujours acces) et rajouter la classe table en friend.
 Etape 11 :
 On peut declarer cette fonction comme méthode de la classe précédente. Ainsi elle a
 accès à tous ses attributs.
+
+Seules 3 commandes implémentées :
+findm <media_name> ----------------> find and display a media
+findg <group_name> ----------------> find and display a group
+play <media_name> -----------------> play a media

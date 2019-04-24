@@ -20,7 +20,12 @@ typedef std::shared_ptr<Video> VideoPtr;
 typedef std::shared_ptr<Film> FilmPtr;
 typedef std::shared_ptr<Group> GroupPtr;
 
-
+/*
+ * Table manage all the Medias and Groups
+ * It keeps in memory the name and the reference to each existing Media/Group
+ *
+ * It allows the server the read and write in it.
+ */
 class Table {
 private:
   std::map<std::string, MediaPtr> medias;
@@ -31,7 +36,8 @@ public:
     std::cout << "Delete a table" << std::endl;
   }
 
-  //Generation of Medias/Groups
+  //--------------------Generation of Medias/Groups--------------------------
+
   PhotoPtr createPhoto(std::string name, std::string path, float latitude,
                        float longitude) {
     PhotoPtr p = (PhotoPtr) new Photo(name, path, latitude, longitude);
@@ -60,7 +66,8 @@ public:
 
 
 
-  //Methods
+  //----------------------------Methods----------------------------------
+
   MediaPtr find(std::string name) const {
     return medias.at(name);
   }
@@ -69,9 +76,11 @@ public:
     return groups.at(name);
   }
 
-  /*remove a group or media from the table.
-    If name match both a group and a media, it will only remove the group
-  */
+  /* Remove a group or media from the table.
+   *
+   * CAREFUL :
+   * If name match both a group and a media, it will only remove the group.
+   */
   void remove(std::string name);
 
   void display(std::string name, std::ostream& stream) const {

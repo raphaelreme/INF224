@@ -5,7 +5,11 @@
 #include <iostream>
 #include "Media.h"
 
-
+/** @brief Define the video model based on Media.
+ *  A Video only has a length more.
+ *
+ *  See Table to create any Media.
+ */
 class Video : public Media {
   friend Table;
 private:
@@ -29,7 +33,7 @@ public:
     this->length = length;
   }
 
-  void print(std::ostream&) const override;
+  virtual void print(std::ostream&) const override;
 
   void read() const override {
     system(("mpv " + getPath() + " &").c_str());

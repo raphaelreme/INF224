@@ -5,12 +5,22 @@
 #include <iostream>
 #include "Video.h"
 
+/** @brief Define the film model based on Media and Video.
+ *  A Film have chapters and a length for each one. its length is the sum of them.
+ *
+ *  See Table to create any Media.
+ *
+ *  Note : copy is also only possible threw Table.
+ */
 class Film : public Video {
   friend Table;
 private:
   int numberOfChapters = 0;
   int * lengths = nullptr;
 
+  /*
+   * User should not use this function anymore.
+   */
   void setLength(float length) override {
     Video::setLength(length);
   }
@@ -40,8 +50,16 @@ protected:
   }
 
   Film(const Film& film) : Video(film) {
-    numberOfChapters = film.numberOfChapters; //private ou pas ?
-    copyLengths(film.lengths, numberOfChapters);
+    numberOfChapters = film.getNumberOfChapters();
+    copyLengths(film.getLengths(), numberOfChapters);
+  }
+
+  //Operators
+  Film& operator=(const Film& film) {
+    Video::operator=(film);
+    numberOfChapters = film.getNumberOfChapters();
+    copyLengths(film.getLengths(), numberOfChapters);
+    return *this;
   }
 
   public:
@@ -64,15 +82,6 @@ protected:
     delete [] this->lengths; //what if null ptr ?
     copyLengths(lengths, numberOfChapters);
   }
-
-  //Operators
-  Film& operator=(const Film& film) {
-    Video::operator=(film);
-    numberOfChapters = film.getNumberOfChapters(); //private ou pas ?
-    copyLengths(film.getLengths(), numberOfChapters);
-    return *this;
-  }
-
 
   //Methods
   void print(std::ostream&) const override;

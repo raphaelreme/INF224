@@ -6,8 +6,10 @@
 
 class Table;
 
-/** @brief define the base class for media.
- *  A media has name and a path
+/** @brief Define the base class for media.
+ *  A media has name and a path.
+ *
+ *  See Table to create any Media.
  */
 class Media {
   friend Table;
@@ -40,11 +42,15 @@ public:
     this->path = path;
   }
 
+  /*
+   * Print the attribute of the object on the ostream.
+   */
   virtual void print(std::ostream&) const;
 
+  /*
+   * Play the media with the appropriate tool.
+   */
   virtual void read() const = 0;
-
-
 };
 
 #endif

@@ -22,22 +22,23 @@ SOURCES = Client.java  CommandAction.java TextArea.java Printer.java MainFrame.j
 #
 JC = javac
 
+## PAS UTILISE POUR LE RENDU
 #
 # Dossier de compilation
 #
-BIN = ../bin
+#BIN = ../bin
 
 #
 # Packages
 #
-PACKAGES = .:interfaces
-vpath %.java $(PACKAGES::= )
+#PACKAGES = .:interfaces
+#vpath %.java $(PACKAGES::= )
 
 #
 # Options du compilateur Java
 #
 
-JFLAGS = -g -d $(BIN) -cp $(PACKAGES)
+JFLAGS = -g# -d $(BIN) -cp $(PACKAGES)
 
 
 ##########################################
@@ -48,12 +49,12 @@ JFLAGS = -g -d $(BIN) -cp $(PACKAGES)
 all: classes
 
 run: all
-	java $(BIN)/${PROG}
+	java ${PROG}
 
 classes: $(SOURCES:.java=.class)
 
 clean:
-	-@$(RM) -r $(BIN)/* 1>/dev/null 2>&1
+	-@$(RM) *.class 1>/dev/null 2>&1
 
 tar:
 	tar cvf ${PROG}.tar.gz ${SOURCES}
@@ -66,8 +67,5 @@ tar:
 
 .SUFFIXES: .java .class
 
-#.java.class:
-#	$(JC) $(JFLAGS) $*.java
-
-%.class: %.java
-	$(JC) $(JFLAGS) $<
+.java.class:
+	$(JC) $(JFLAGS) $*.java
